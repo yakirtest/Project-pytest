@@ -36,7 +36,7 @@ def find_maedian_average (data_set:dict)->(float,float):
         ages.append(data_set[id]["age"])
     return statistics.mean(ages),statistics.median(ages)
 
-def print_values_above(data_set: dict, number: int = 0)->None:
+def print_values_above(data_set: dict, number: int = 0)->bool:
     """
     A function will print values that their age value is greater than the number sent
     **If not sent number
@@ -56,6 +56,7 @@ def print_values_above(data_set: dict, number: int = 0)->None:
                 print(f" ID: {id} / {format_values(data_set[id])}")
         else:
             print(f" ID: {id} / {format_values(data_set[id])}")
+    return True
 
 
 def format_values(data:dict)->str:
@@ -70,8 +71,7 @@ def format_values(data:dict)->str:
         val += f"{k}: {v} "
     return val
 
-
-if __name__ == '__main__':
+def initialize_dictionary():
     data_set = {3322117: {"name": "Tal", "sex": "male", "age": 22.6},
                 176864301: {"sex": "female", "age": 54, "height": 1.65, "name": "Anat"},
                 256468123: {"sex": "male", "age": 29, "height": 1.65, "name": "yakir"},
@@ -81,6 +81,12 @@ if __name__ == '__main__':
                 78905123: {"sex": "male", "age": 30, "height": 1.65, "name": "Moshe"},
                 343768797: {"name": "Yaffe", "sex": "male", "age": 25}
                 }
+    return data_set
+
+
+
+if __name__ == '__main__':
+    data_set = initialize_dictionary()
     male, female = split_male_female(data_set)
     #testing the dictionary
     #print(male)
@@ -88,6 +94,7 @@ if __name__ == '__main__':
     print("~" * 40)
 
     Average, Median = find_maedian_average(data_set)
+    print(type(Average),type(Median))
     print("The average age is: " + f"{Average:.2f}")
     print("The median age is: " + f"{Median}")
     print("~" * 40)
